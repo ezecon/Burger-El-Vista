@@ -24,7 +24,7 @@ import {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.post(`${API_URL}register/`, {
+        const response = await axios.post(`${API_URL}auth/register/`, {
           username,
           email,
           password,

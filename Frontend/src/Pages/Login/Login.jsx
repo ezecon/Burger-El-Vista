@@ -20,7 +20,7 @@ import {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.post(`${API_URL}token/`, {
+        const response = await axios.post(`${API_URL}auth/token/`, {
           username,
           password,
         });
