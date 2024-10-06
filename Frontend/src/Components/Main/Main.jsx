@@ -10,8 +10,15 @@ export default function Main() {
         <Navbar/>
         <div className="bg-[black] py-4 text-white font-bold roboto-mono gap-2 flex justify-center items-center">
             <FaLocationDot/>
-            <p className="underline">CHOOSE A LOCATION TO ORDER </p>
-            <Button className="bg-[#e28821] font-bold text-lg">Order Now</Button>
+            <p className="underline text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl">
+              CHOOSE A LOCATION TO ORDER
+            </p>
+
+            <Button className="bg-[#e28821] font-bold text-xs sm:text-sm md:text-md lg:text-xl py-2 px-4 sm:px-6 lg:px-8">
+  Order Now
+</Button>
+
+
 
         </div>
         <div>

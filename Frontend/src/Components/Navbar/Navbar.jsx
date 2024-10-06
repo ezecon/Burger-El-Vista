@@ -47,7 +47,7 @@ export default function Navbar() {
               </Menu>
             ) : (
               <div className="flex gap-2">
-                <Link to="/login"><Button className="bg-green-500">Login</Button></Link>
+                <Link to="/login"><Button className="bg-black">Login</Button></Link>
                 <Link to="/register"><Button className="text-black bg-white">Sign Up</Button></Link>
               </div>                
             )}
