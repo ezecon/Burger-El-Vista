@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-31iwsa$%4%r7po_-%omk3sct!k51bmuh#aztr!)!%(#ip6h%*w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # Update this for production
 
 # Application definition
 INSTALLED_APPS = [
@@ -34,11 +34,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'restaurant',
-    'corsheaders',
+    'restaurant',  # Your app name
+    'corsheaders',  # CORS headers app
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # CORS Middleware should be at the top
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -46,7 +47,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # CORS Middleware
 ]
 
 ROOT_URLCONF = 'Backend.urls'
@@ -115,5 +115,10 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
 }
 
+# CORS Settings
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  # Update this with your React app URL
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False  # Set this to False to restrict to specific origins
+CORS_ALLOW_CREDENTIALS = True  # If you need to send credentials

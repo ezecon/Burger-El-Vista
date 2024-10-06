@@ -10,10 +10,12 @@ import {
   import axios from "axios";
   import { useState } from "react";
   import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
   
   export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
   
     const API_URL = 'http://127.0.0.1:8000/api/';
   
@@ -29,8 +31,8 @@ import {
           toast.success("Login Successfully");
           setUsername('');
           setPassword('');
-          localStorage.setItem('refreshToken', response.data.refresh); 
           localStorage.setItem('accessToken', response.data.access); 
+          navigate('/')
         }
       } catch (error) {
         if (error.response) {
@@ -45,7 +47,7 @@ import {
     };
   
     return (
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-20">
         <Card className="w-96">
           <CardHeader
             variant="gradient"
@@ -80,7 +82,7 @@ import {
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
               Don't have an account?
-              <Typography
+             <Link to="/register"> <Typography
                 as="a"
                 href="#signup"
                 variant="small"
@@ -88,7 +90,7 @@ import {
                 className="ml-1 font-bold"
               >
                 Register
-              </Typography>
+              </Typography></Link>
             </Typography>
           </CardFooter>
         </Card>

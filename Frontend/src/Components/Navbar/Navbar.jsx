@@ -12,7 +12,7 @@ export default function Navbar() {
   const [openRight, setOpenRight] = useState(false);
 
   const navigate = useNavigate();
-  const [userID, setUserID] = useState(false);
+  const [userID, setUserID] = useState(true);
   const [userInfo, setUserInfo] = useState(false);
 
   
@@ -31,9 +31,9 @@ export default function Navbar() {
         // Small screen
         setDisplayComponent(
           <>
-            <Link to="/carts"><h1 className="text-xl text-white montserrat-alternates-light cursor-pointer hover:text-[green] bebas-neue">Cart</h1></Link>
-            <Link to="/products"><h1 className="text-xl bebas-neue  text-white montserrat-alternates-light cursor-pointer hover:text-[green]">Products</h1></Link>
-            <Link to="/about"><h1 className="text-xl bebas-neue text-white montserrat-alternates-light cursor-pointer hover:text-[green]">About</h1></Link>
+            <Link to="/menus"><h1 className="text-xl text-white montserrat-alternates-light cursor-pointer hover:text-[#832424] bebas-neue">Menu</h1></Link>
+            <Link to="/products"><h1 className="text-xl bebas-neue  text-white montserrat-alternates-light cursor-pointer hover:text-[#832424]">Products</h1></Link>
+            <Link to="/about"><h1 className="text-xl bebas-neue text-white montserrat-alternates-light cursor-pointer hover:text-[#832424]">About</h1></Link>
             {userID ? (
               <Menu>
                 <MenuHandler>
@@ -113,24 +113,24 @@ export default function Navbar() {
         </div>
         {userID ? (
           <div className="bebas-neue flex flex-col montserrat-alternates-regular gap-y-4 h-full">
-            <div className="flex flex-col gap-3 justify-center items-center text-[green]">
+            <div className="flex flex-col gap-3 justify-center items-center text-[#832424]">
               <Link to="/profile">
-                <Avatar src={userInfo?.image} className="border-green-600 border-2" size="md" />
+                <Avatar src={userInfo?.image} className="border-[#832424] border-2" size="md" />
               </Link>
               <h1 className="montserrat-alternates-bold">{userInfo?.name}</h1>
               {!userInfo && <p>Loading..</p>}
             </div>
             <div className="bg-[#cdcecd67] p-5 rounded-lg flex justify-between">
-              <Link to="/dashboard"><h1 className="text-[green] cursor-pointer hover:text-gray-300">Dashboard</h1></Link>
-              <h1 onClick={handleLogout} className="text-[green] cursor-pointer hover:text-gray-300">Logout</h1>
+              <Link to="/dashboard"><h1 className="text-[#832424] cursor-pointer hover:text-gray-300">Dashboard</h1></Link>
+              <h1 onClick={handleLogout} className="text-[#832424] cursor-pointer hover:text-gray-300">Logout</h1>
             </div>
-            <Link to="/carts"><h1 className="bebas-neue text-[green] cursor-pointer hover:text-gray-300">Menu</h1></Link>
-            <Link to="/products"><h1 className="text-[green] cursor-pointer hover:text-gray-300">Products</h1></Link>
-            <h1 className="text-[green] cursor-pointer hover:text-gray-300">About</h1>
+            <Link to="/menus"><h1 className="bebas-neue text-[#832424] cursor-pointer hover:text-gray-300">Menu</h1></Link>
+            <Link to="/products"><h1 className="text-[#832424] cursor-pointer hover:text-gray-300">Products</h1></Link>
+            <h1 className="text-[#832424] cursor-pointer hover:text-gray-300">About</h1>
           </div>
         ) : (
           <div className="flex justify-between px-10">
-            <Link to="/login"><Button className="bg-green-500">Login</Button></Link>
+            <Link to="/login"><Button className="bg-black">Login</Button></Link>
             <Link to="/register"><Button className="text-black bg-white">Sign Up</Button></Link>
           </div>
         )}

@@ -10,6 +10,7 @@ import {
   import axios from "axios";
   import { useState } from "react";
   import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
   
   export function Register() {
     const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ import {
     const [password2, setPassword2] = useState(''); // New field for password confirmation
     const [firstName, setFirstName] = useState(''); // New field for first name
     const [lastName, setLastName] = useState(''); // New field for last name
-  
+    const navigate = useNavigate();
     const API_URL = 'http://127.0.0.1:8000/api/';
   
     const handleSubmit = async (e) => {
@@ -42,6 +43,7 @@ import {
           setPassword2(''); // Reset password2
           setFirstName(''); // Reset first name
           setLastName(''); // Reset last name
+          navigate('/login')
         }
       } catch (error) {
         if (error.response) {
@@ -56,7 +58,7 @@ import {
     };
   
     return (
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-20">
         <Card className="w-96">
           <CardHeader
             variant="gradient"
@@ -124,7 +126,7 @@ import {
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
               Already have an account?
-              <Typography
+              <Link to="/login"><Typography
                 as="a"
                 href="#signup"
                 variant="small"
@@ -132,7 +134,7 @@ import {
                 className="ml-1 font-bold"
               >
                 Login
-              </Typography>
+              </Typography></Link>
             </Typography>
           </CardFooter>
         </Card>
