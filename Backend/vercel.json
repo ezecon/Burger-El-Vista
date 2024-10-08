@@ -2,13 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "build_file.sh",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "static" }
-    },
-    {
       "src": "manage.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
     }
   ],
   "routes": [
