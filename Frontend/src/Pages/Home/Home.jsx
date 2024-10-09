@@ -1,4 +1,5 @@
 import Award from "../../Components/Award/Award";
+import { Footer } from "../../Components/Footer/Footer";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import Menu from "../../Components/Menu/Menu";
 import SpecialCard from "../../Components/SpecialCard/SpecialCard";
@@ -13,6 +14,7 @@ export default function Home() {
       <Menu/>
       <Award/>
       <SpecialCard/>
+      <Footer/>
     </div>
   )
 }

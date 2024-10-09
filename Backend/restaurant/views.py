@@ -8,6 +8,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import permissions
+from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
+from .serializers import UserSerializer
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -19,6 +22,26 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+class UserViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    
+    # Add the queryset attribute
+    queryset = User.objects.all()
+
+    def retrieve(self, request, username=None):
+        try:
+            user = self.queryset.get(username=username)  # Use queryset here
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        except User.DoesNotExist:
+            return Response({'message': 'User not found'}, status=404)
+
+    def list(self, request):
+        serializer = UserSerializer(self.queryset, many=True)
+        return Response(serializer.data)
+    
+    
 
 class RegisterView(APIView):
     def post(self, request):

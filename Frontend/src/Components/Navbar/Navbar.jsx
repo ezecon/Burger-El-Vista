@@ -1,20 +1,32 @@
 import { Avatar, Button, Drawer, IconButton, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import { FaCircleUser } from "react-icons/fa6";
 import { CgDetailsMore } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaBurger } from "react-icons/fa6";
+import { useToken } from "../Hook/useToken";
+import { isTokenExpired } from "../Hook/tokenUtils";
 
 
 export default function Navbar() {
   const [displayComponent, setDisplayComponent] = useState(null);
   const [openRight, setOpenRight] = useState(false);
 
-  const navigate = useNavigate();
-  const [userID, setUserID] = useState(true);
+  const [userID, setUserID] = useState('');
   const [userInfo, setUserInfo] = useState(false);
 
+  const { token, decodedToken, removeToken } = useToken();
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    if (isTokenExpired(token)) {
+      console.log("Token has expired. Logging out...");
+    } else {
+      setUserID(decodedToken.username);
+      console.log(decodedToken.username);
+    }
+  }, [token, decodedToken]);
   
 
   // Open and close the drawer
@@ -37,10 +49,11 @@ export default function Navbar() {
             {userID ? (
               <Menu>
                 <MenuHandler>
-                  <Avatar src={userInfo?.image} className="border-green-600 border-2 cursor-pointer" size="md" />
+                  <div className="text-center text-white font-bold cursor-pointer">
+                  <FaCircleUser className="ml-2 text-3xl text-white"/><p>{userID}</p>
+                  </div>
                 </MenuHandler>
                 <MenuList>
-                  <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
                   <Link to="/dashboard"><MenuItem>Dashboard</MenuItem></Link>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
@@ -69,7 +82,6 @@ export default function Navbar() {
 
   const handleLogout = () => {
     removeToken();
-    navigate('/login');
   };
 
   return (
@@ -114,11 +126,9 @@ export default function Navbar() {
         {userID ? (
           <div className="bebas-neue flex flex-col montserrat-alternates-regular gap-y-4 h-full">
             <div className="flex flex-col gap-3 justify-center items-center text-[#832424]">
-              <Link to="/profile">
-                <Avatar src={userInfo?.image} className="border-[#832424] border-2" size="md" />
-              </Link>
-              <h1 className="montserrat-alternates-bold">{userInfo?.name}</h1>
-              {!userInfo && <p>Loading..</p>}
+            <div className="text-center text-[#832424] font-bold cursor-pointer">
+                  <FaCircleUser className="ml-1 text-3xl"/><p>{userID}</p>
+            </div>
             </div>
             <div className="bg-[#cdcecd67] p-5 rounded-lg flex justify-between">
               <Link to="/dashboard"><h1 className="text-[#832424] cursor-pointer hover:text-gray-300">Dashboard</h1></Link>

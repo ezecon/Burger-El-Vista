@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { Button } from "@material-tailwind/react";
 import Navbar from "../Navbar/Navbar";
@@ -14,10 +14,10 @@ export default function Main() {
               CHOOSE A LOCATION TO ORDER
             </p>
 
-            <Button className="bg-[#e28821] font-bold text-xs sm:text-sm md:text-md lg:text-xl py-2 px-4 sm:px-6 lg:px-8">
-  Order Now
-</Button>
-
+            <Link to="/products"><Button className="bg-[#e28821] font-bold text-xs sm:text-sm md:text-md lg:text-xl py-2 px-4 sm:px-6 lg:px-8">
+              Order Now
+            </Button>
+            </Link>
 
 
         </div>

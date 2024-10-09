@@ -6,8 +6,29 @@ import {
     TabPanel,
   } from "@material-tailwind/react";
 import All from "./All";
+import { isTokenExpired } from "../../Components/Hook/tokenUtils";
+import { useToken } from "../../Components/Hook/useToken";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
    
   export function Products() {
+
+    const { token, removeToken } = useToken();
+    const navigate = useNavigate()
+    
+    useEffect(()=>{
+      if (isTokenExpired(token)) {
+        console.log("Token has expired. Logging out...");
+        removeToken(); 
+        navigate('/login')
+      } else {
+        console.log("Token is still valid.");
+      }
+    })
+
+
+
+
     const data = [
       {
         label: "ALL",

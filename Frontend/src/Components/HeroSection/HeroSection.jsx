@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
@@ -9,7 +10,10 @@ export default function HeroSection() {
           <h1 className="bebas-neue text-[#811b1b] font-bold text-4xl md:text-7xl mb-4">
             Meticulously Crafted To Be <br />DESTROYED
           </h1>
-          <Button className="bg-[#e28821] font-bold text-xl mt-2">Order Now</Button>
+          <Link to="/products"><Button className="bg-[#e28821] font-bold text-xs sm:text-sm md:text-md lg:text-xl py-2 px-4 sm:px-6 lg:px-8">
+              Order Now
+            </Button>
+            </Link>
         </div>
       </div>
 

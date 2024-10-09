@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export default function TopDish() {
   return (
@@ -19,7 +20,7 @@ export default function TopDish() {
           <p className="roboto-mono text-base md:text-lg mt-2">
             We gave our Certified Angus Beef® burgers, fresh ingredients, and bold flavors a makeover. Time to eat like no one's watching!
           </p>
-          <Button className="bg-[#e28821] font-bold text-xl mt-4">Order Now</Button>
+          <Link to="/menus"><Button className="bg-[#e28821] font-bold text-xl mt-4">Order Now</Button></Link>
         </div>
       </div>
     </div>
